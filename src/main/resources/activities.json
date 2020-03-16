@@ -1,0 +1,6 @@
+{"client_id": 1234, "user_id": "john@foo.com", "account_id": 4567, "activity": "activity_1", "module":"module_1" }
+{"client_id": 1234, "user_id": "john@foo.com", "account_id": 4567, "activity": "activity_1", "module":"module_1" }
+{"client_id": 1234, "user_id": "john@foo.com", "account_id": 4567, "activity": "activity_2", "module":"module_2" }
+{"client_id": 1234, "user_id": "john@foo.com", "account_id": 9876, "activity": "activity_1", "module":"module_1" }
+{"client_id": 1234, "user_id": "john@foo.com", "account_id": 9876, "activity": "activity_2", "module":"module_1" }
+{"client_id": 1234, "user_id": "doe@bar.com", "account_id": 4567, "activity": "activity_1", "module":"module_1" }
