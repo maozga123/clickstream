@@ -23,7 +23,7 @@ object AggregationManager
       .getOrCreate()
 
     import spark.implicits._
-    val clickStream = spark.read.parquet("clickstream/client_id=1234/date=20200310").as[ClickRow]
+    val clickStream = spark.read.option("basePath", "clickstream/").parquet("clickstream/client_id=1234/date=20200310").as[ClickRow]
 
     println("Number of click stream events" + clickStream.count());
 
@@ -37,7 +37,10 @@ object AggregationManager
       "group by user_id, module, activity")
 
     numUsersActvities.show()
-    numUsersActvities.coalesce(4).write.mode(SaveMode.Append).parquet("batchZone/client_id=1234/date=20200310/statistics/activities_per_user/")
+    numUsersActvities.coalesce(4)
+      .write
+      .mode(SaveMode.Append)
+      .parquet("batchZone/client_id=1234/date=20200310/statistics/activities_per_user/")
 
     println("calculate activities per account")
     val numAccountActivities = spark.sql("Select account_id, module,activity , count (*) as activities_count from click_stream " +
@@ -50,7 +53,10 @@ object AggregationManager
       "group by user_id, module")
 
     numUsersModules.show()
-    numUsersModules.coalesce(4).write.mode(SaveMode.Append).parquet("batchZone/client_id=1234/date=20200310/statistics/modules_per_user/")
+    numUsersModules.coalesce(4)
+      .write
+      .mode(SaveMode.Append)
+      .parquet("batchZone/client_id=1234/date=20200310/statistics/modules_per_user/")
 
     println("calculate Modules per account")
     val numAccountModules = spark.sql("Select account_id, module,count (*) as modules_count from click_stream " +
